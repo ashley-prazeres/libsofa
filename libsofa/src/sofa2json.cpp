@@ -131,7 +131,7 @@ static void DisplayInformations(json_object *jobj, const std::string & filename)
 			json_object_object_add(jobj3, "Attributes", jobj4);
 
 			for( std::size_t j = 0; j < attributeNames.size(); j++ )
-				json_object_object_add(jobj2, attributeNames[j].c_str(), json_object_new_string(attributeValues[j].c_str()));
+				json_object_object_add(jobj4, attributeNames[j].c_str(), json_object_new_string(attributeValues[j].c_str()));
 	    	}
 
 		std::vector<double> values;
@@ -153,7 +153,7 @@ static void DisplayInformations(json_object *jobj, const std::string & filename)
 			break;
 
 		case 2:
-			for(size_t i=0; i<values.size();i++ ) {
+			for(size_t i=0; i<values.size(); ) {
 				json_object *jarray4 = json_object_new_array();
 				json_object_array_add(jarray3, jarray4);
 				for(size_t j=0; j<dims[1];j++) 
@@ -162,7 +162,7 @@ static void DisplayInformations(json_object *jobj, const std::string & filename)
 			break;
 
 		default:
-			for(size_t i=0; i<values.size();i++ )
+			for(size_t i=0; i<values.size(); )
 				json_object_array_add(jarray3,json_object_new_double(values[i++]));
 			break;
 		
