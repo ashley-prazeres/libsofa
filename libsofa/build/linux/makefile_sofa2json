@@ -1,37 +1,16 @@
 #************************************************************************************
 #
 #	@file		makefile
-#	@brief		make file for libsofa
+#	@brief		make file for sofa2json
 #	@author     Thibaut Carpentier
 #	@version    1.0.0
 #	@date       18/07/2012
 #
 #************************************************************************************
 
-
 #************************************************************************************
 # source files.
-SRC 		=  	../../src/SOFAAPI.cpp \
-				../../src/SOFAAttributes.cpp \
-				../../src/SOFACoordinates.cpp \
-				../../src/SOFADate.cpp \
-				../../src/SOFAEmitter.cpp \
-				../../src/SOFAExceptions.cpp \
-				../../src/SOFAFile.cpp \
-				../../src/SOFAHelper.cpp \
-				../../src/SOFAListener.cpp \
-				../../src/SOFANcFile.cpp \
-				../../src/SOFAPoint3.cpp \
-				../../src/SOFAPosition.cpp \
-				../../src/SOFAReceiver.cpp \
-				../../src/SOFASimpleFreeFieldHRIR.cpp \
-				../../src/SOFASimpleFreeFieldSOS.cpp \
-				../../src/SOFASimpleHeadphoneIR.cpp \
-				../../src/SOFAGeneralTF.cpp \
-				../../src/SOFAGeneralFIR.cpp \
-				../../src/SOFASource.cpp \
-				../../src/SOFAString.cpp \
-				../../src/SOFAUnits.cpp
+SRC 		=  	../../src/sofa2json.cpp
 
 #************************************************************************************
 # where to build the .o files
@@ -39,50 +18,48 @@ BUILDDIR 	= .
 
 #************************************************************************************
 # object files
-OBJ 		= 	$(SRC:.cpp=.o)
+OBJ 		= 	$(SRC:.cpp=.o) 
 
 #************************************************************************************
 # output library
-OUT 		= 	../../lib/libsofa.a
+OUT 		= 	../../lib/sofa2json
 
 #************************************************************************************
 # header search paths
 INCLUDES 	= 	-I/usr/include \
 				-I../../src \
 				-I../../dependencies/include
-				
-				
+
 #************************************************************************************
 # preprocessor macros
-LIBSOFA_MACROS 		= 	-DNDEBUG=1 \
+LIBSOFA_MACROS = 	     \
 						-DLINUX=1 \
 						-D__unix__=1 \
 						-DHOST_ENDIAN_LITTLE=1
 
 #************************************************************************************
 # Warning levels
-WARNING_CFLAGS	= -Wno-unknown-pragmas -Wno-unused-value -Wno-unused
+WARNING_CFLAGS	=   -Wno-unknown-pragmas -Wno-reorder -Wno-unused-value -Wno-unused
 
 #************************************************************************************
 # C++ compiler flags (-g -O2 -Wall)
-CCFLAGS 		= 	$(LIBSOFA_MACROS) \
-					-g \
-					-O3 \
+CCFLAGS 		= 	$(LIBSOFA_MACROS)  \
+					-g  \
+					-O3  \
 					$(WARNING_CFLAGS)
 
 #************************************************************************************
 # compiler
-#
-# the -fpic option is required to properly build mex functions
-CCC 		= g++ -fpic
+CCC 		= g++
 
 #************************************************************************************
 # library search paths
-LDFLAGS 	= --static -L../../../libsofa/dependencies/lib/linux
+LDFLAGS 	= -L../../../libsofa/lib 
 
 #************************************************************************************
 # linker flags
-LDLIBS	 	= -lstdc++ -lnetcdf_c++4 -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl
+LDLIBS 		= -lsofa -lstdc++ -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl -lnetcdf_c++4 -ljson-c
+
 
 #************************************************************************************
 
@@ -90,12 +67,12 @@ LDLIBS	 	= -lstdc++ -lnetcdf_c++4 -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl
 
 all:    $(OUT)
 		@echo " "
-		@echo  Build libsofa is OK !!
+		@echo  Build $(OUT) is OK !!
 		@echo " "
 
-$(OUT): $(OBJ)		
-		mkdir -p ../../lib
-		ar rcs $(OUT) $(OBJ) 		
+$(OUT): $(OBJ) makefile_sofa2json
+		@echo "Linking $(OUT) ... "
+		$(CCC) -O -o $(OUT) $(OBJ) $(LDFLAGS) $(LDLIBS) 
 	
 # this is a suffix replacement rule for building .o's from .c's
 # it uses automatic variables $<: the name of the prerequisite of
@@ -106,17 +83,17 @@ $(OUT): $(OBJ)
 		@echo " "
 		@echo "Compiling $< ..."
 		@echo " "
-		$(CCC) $(CCFLAGS) $(INCLUDES) -c $<  -o $@ 
+		$(CCC) $(CCFLAGS) $(INCLUDES) -c $<  -o $@
+		@echo " "
+		@echo " "
 
-clean:	
+clean:
 		@echo "Cleaning..."
 		$(RM) $(OBJ) *~ $(OUT)
-		@echo " "
 
-depend: $(SRC)
+depend: $(SRC) 
 		@echo "Generating dependencies for $^"
 		makedepend $(INCLUDES) $^
-		@echo " "
 
 # DO NOT DELETE THIS LINE -- make depend needs it	
-
+		
