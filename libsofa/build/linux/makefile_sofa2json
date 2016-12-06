@@ -58,7 +58,7 @@ LDFLAGS 	= -L../../../libsofa/lib
 
 #************************************************************************************
 # linker flags
-LDLIBS 		= -lsofa -lstdc++ -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl -lnetcdf_c++4 -ljson-c
+LDLIBS 		= -l:libsofa.a -lstdc++ -l:libnetcdf.a -l:libhdf5_hl.a -l:libhdf5.a -l:libcurl.a -lm -lz -l:libdl.a -lnetcdf_c++4 -ljson-c
 
 
 #************************************************************************************
