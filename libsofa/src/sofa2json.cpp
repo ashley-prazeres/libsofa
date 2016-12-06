@@ -138,36 +138,9 @@ static void DisplayInformations(json_object *jobj, const std::string & filename)
 		file.GetValues(values, name);
 		json_object *jarray3 = json_object_new_array();
 		json_object_object_add(jobj3, "Values", jarray3);
-		switch(dims.size()) {
-		case 3:
-			for(size_t i=0; i<values.size(); ) {
-				json_object *jarray4 = json_object_new_array();
-				json_object_array_add(jarray3, jarray4);
-				for(size_t j=0; j<dims[1];j++) {
-					json_object *jarray5 = json_object_new_array();
-					json_object_array_add(jarray4, jarray5);
-					for(size_t k=0; k<dims[2];k++) 
-						json_object_array_add(jarray5,json_object_new_double(values[i++]));			
-				}
-			}
-			break;
-
-		case 2:
-			for(size_t i=0; i<values.size(); ) {
-				json_object *jarray4 = json_object_new_array();
-				json_object_array_add(jarray3, jarray4);
-				for(size_t j=0; j<dims[1];j++) 
-					json_object_array_add(jarray4,json_object_new_double(values[i++]));			
-			}
-			break;
-
-		default:
-			for(size_t i=0; i<values.size(); )
+    	for(size_t i=0; i<values.size();)
 				json_object_array_add(jarray3,json_object_new_double(values[i++]));
-			break;
-		
-		}
-        }
+	    }
     }
 }
 
@@ -186,6 +159,8 @@ int main(int argc, char *argv[])
 	}
  
 	json_object * jobj = json_object_new_object();
+
+#if 0
 	json_object_object_add(jobj, "filename", json_object_new_string(argv[1]));
 
 	if(!TestFileConvention(jobj, argv[1] )) {
@@ -196,6 +171,10 @@ int main(int argc, char *argv[])
 	json_object * jobj2 = json_object_new_object();
 	json_object_object_add(jobj, "HRTF", jobj2);
 	DisplayInformations(jobj2, argv[1]);
+#else
+	DisplayInformations(jobj, argv[1]);
+#endif
+
 	puts(json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_PRETTY));
 	return 0;
 }
