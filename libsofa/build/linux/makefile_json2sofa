@@ -22,7 +22,7 @@ OBJ 		= 	$(SRC:.cpp=.o)
 
 #************************************************************************************
 # output library
-OUT 		= 	../../lib/sofa2json
+OUT 		= 	../../lib/json2sofa
 
 #************************************************************************************
 # header search paths
@@ -58,7 +58,7 @@ LDFLAGS 	= -L../../../libsofa/lib
 
 #************************************************************************************
 # linker flags
-LDLIBS 		= -l:libsofa.a -lstdc++ -l:libnetcdf.a -l:libhdf5_hl.a -l:libhdf5.a -l:libcurl.a -lm -lz -l:libdl.a -l:libnetcdf_c++4.so -ljson-c
+LDLIBS 		= -lsofa -lstdc++ -ljson-c
 
 
 #************************************************************************************

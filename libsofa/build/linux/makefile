@@ -82,7 +82,7 @@ LDFLAGS 	= --static -L../../../libsofa/dependencies/lib/linux
 
 #************************************************************************************
 # linker flags
-LDLIBS	 	= -lstdc++ -lnetcdf_c++4 -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl
+LDLIBS	 	= -lstdc++ -lnetcdf_c++ -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lm -lz -ldl
 
 #************************************************************************************
 
@@ -119,4 +119,3 @@ depend: $(SRC)
 		@echo " "
 
 # DO NOT DELETE THIS LINE -- make depend needs it	
-
