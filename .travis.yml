@@ -27,14 +27,14 @@ script:
   
 env:
   global:
-   - secure: "4/u+9HdF0FZsQrZ50J+65MtmjdE3iNH1f0p4iY1zapihg03qVJ5S7hNDG1Suhvmk4YJ+WRxR1rimMlErL8Du72r4AfPoxmqnpuBSJJfLn3zYPTSx/jKSdRRKA9sWwaV+Fl+yIKvIn0eLmXBjY7KHtZufvNGEY7vV7rQoDPxiDhj5lDKz91wobMLA3Tw8YcpnvpyNgEkcIkBso6xKyTk/wJMhkZ9OmZFfv1FYHs373pluXH02NIpQqwIeLwG4hXzkkGHfuJvl/iVt72hBXQM02A9woNbst3pm0mg+CPJJpyhCd6Rk4zS/IW/1/Uh2JM/T0Lt/F0Nm0RhN8BCh6/YzETmYIak4lgR2DE/XvW7ban/5JGP7zgol0rFKIszEvieCTuHvqteY/h+xVMUDsmICFCDHBHVgJUgVAMN2aaRAthQ0/LWkYcuiRdZZvzzXpggPOHnPnB1TBPH0l1SNXnutv2TGP5z6P1WoZWv/YHD/CpQD4NB+jIw8vP5PDIrG5o9YMAwX1G5rVrxyowSFzx1PwNr+lDKPsysGKzlzpsev5wxd5lcwRGq9AtcBkAU2Lueq+9DMXRsSNLNkpzcblD6z8beuA81l64Qy/NNAUwNloauJXoeXm8pJmN3/KQB25RK2/7ej2SwCF0RwcWhPtso6rML1uEdB/aXJ4CvWjdc95hI="
+   - secure: "ucI8FM2yDIPBNuIxNMBlwk9Qh/5xsfWo6t5n9vXLIyxYOhEp86LzxbOD0THXX3Kd81pGTnEHYGeiqwzPV69BEuKZbZVWLjPTflMD6weNHSzxqHPY6VGs+4sOrdL92LTiJsZGF4+odwgLRewer6oSDl4SUwd6auurJfueOAHib/z8JQOwx1kYTBUHYmzZwViVMtzT3R/2tpciWsAOL3o8H5lY8V1flOrdtod8J0gsdAr7/0SzxG6UmrgVUX+Ki26sUbBaGjcv6GBdoVPJitiuKiPcCpgdc+XLekSmamxqQGKVieSUcW4vbne1rCeiQaO6X+VdK4y0pgFyt0IzE7XgXLpGUGL6dGTCoRLduUsFKkR2BhW5Dz980zNtuQ0eI6WgmW7YL+GylxOGgTvqjWnPQaEhTC9fUxaejs4bgwdf/59Gnn3YJ8Hrs1VzuxPGuuNwzLSjIN7t5dfsIOeCTPLwVd7S/7WH/cFutDPbHQrhSjElYVw5Mh9d1SGx6QcJw7DOve49rUdz5ak2g/ld5T+GJF+7O6O7jUhOwetHLcjC+bwvhEaTgXMtSdhamLVvYnwnOo03rQTLzWI1DlCgmjdlAphizC7PXSxbWCQKcHCb+nOyx8rsnb+zKZlWhLG6irwvylawVVbKlRg8ynu842Qi9nlxxTNDIOa3nqVZU9IoHic="
 
-#addons:
-#  coverity_scan:
-#    project:
-#      name: "hoene/libsofa"
-#      description: "Build submitted via Travis CI"
-#    notification_email: christian.hoene@symonics.com
-#    build_command: make all
-#    branch_pattern: master
-    
+addons:
+  coverity_scan:
+    project:
+      name: "hoene/libsofa"
+      description: "Build submitted via Travis CI"
+    notification_email: christian.hoene@symonics.com
+    build_command: make all
+    branch_pattern: master
+   
