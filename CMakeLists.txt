@@ -47,9 +47,10 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-    add_custom_target(doxyDoc COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_HOME_DIRECTORY}/doc/doxygen/sofa_api.doxyfile"
-        WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}/doc/doxygen
-        COMMENT "Building user's documentation into doxyDoc build dir..."
-    )
+  add_custom_target(
+    doxyDoc
+    COMMAND ${DOXYGEN_EXECUTABLE}
+            "${CMAKE_HOME_DIRECTORY}/doc/doxygen/sofa_api.doxyfile"
+    WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}/doc/doxygen
+    COMMENT "Building user's documentation into doxyDoc build dir...")
 endif()
-

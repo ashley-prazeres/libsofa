@@ -65,9 +65,9 @@ http://www.sofaconventions.org
 using namespace sofa;
 
 #if (SOFA_WINDOWS == 1)
-#include <windows.h>
 #include <sys/timeb.h>
 #include <time.h>
+#include <windows.h>
 #define literal64bit(longLiteral) ((__int64)longLiteral)
 #else
 #define literal64bit(longLiteral) (longLiteral##LL)

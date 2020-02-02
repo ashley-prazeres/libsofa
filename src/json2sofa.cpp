@@ -252,5 +252,7 @@ int main(int argc, char *argv[]) {
 
   // quit
   json_object_put(jobj);
-  return result ? 1 : 0;
+  if (!result)
+    std::cerr << "failed" << std::endl;
+  return result ? 0 : 1;
 }

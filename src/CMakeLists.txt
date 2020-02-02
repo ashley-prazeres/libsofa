@@ -133,9 +133,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   find_library(DL_LIB dl ${SOFA_EXT_LIB_PATH})
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   # set(SOFA_EXT_LIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/lib/linux"
-  # CACHE FILEPATH "description")
-  # additional dependencies on linux, should be on system find_library(SZ_LIB
-  # szip) #linux library is compiled without szlib support
+  # CACHE FILEPATH "description") additional dependencies on linux, should be on
+  # system find_library(SZ_LIB szip) #linux library is compiled without szlib
+  # support
   find_library(M_LIB m)
   find_library(DL_LIB dl)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -229,17 +229,13 @@ target_link_libraries(sofa2json sofa json-c)
 add_executable(json2sofa json2sofa.cpp)
 target_link_libraries(json2sofa sofa json-c)
 
-
 if(BUILD_TESTS)
-  add_test(sofainfo ./sofainfo 
-           ../../tests/MIT_KEMAR_large_pinna.sofa)
-  add_test(sofamisc ./sofamisc
-           ../../tests/MIT_KEMAR_large_pinna.sofa)
-  add_test(sofa2json ./sofa2json 
-           ../../tests/MIT_KEMAR_large_pinna.sofa)
-  add_test(compare_MIT ../../tests/compare.sh 
-           ../../tests/MIT_KEMAR_large_pinna)
-  add_test(compare_UDV ../../tests/compare.sh 
+  add_test(sofainfo ./sofainfo ../../tests/MIT_KEMAR_large_pinna.sofa)
+  add_test(sofamisc ./sofamisc ../../tests/MIT_KEMAR_large_pinna.sofa)
+  add_test(sofa2json ./sofa2json ../../tests/MIT_KEMAR_large_pinna.sofa)
+  add_test(compare_MIT ../../tests/compare.sh ../../tests/MIT_KEMAR_large_pinna)
+  add_test(compare_UDV ../../tests/compare.sh
            ../../tests/example_dummy_sofa48_with_user_defined_variable)
-
+  add_test(compare_genelec ../../tests/compare.sh
+           ../../tests/TestSOFA48_netcdf472)
 endif(BUILD_TESTS)
