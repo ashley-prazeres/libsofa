@@ -14,6 +14,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y  libnetcdf-c++4-dev libjson-c-dev doxygen graphviz  ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca- ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update  ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew unlink python@2  ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade netcdf ; fi 
   
 before_script:
