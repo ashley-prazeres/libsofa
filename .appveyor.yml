@@ -1,0 +1,11 @@
+version: 1.0.{build}
+configuration: Release
+platform: x64
+nuget:
+  account_feed: true
+  project_feed: true
+build:
+  project: windows/libsofa.sln
+  verbosity: normal
+artifacts:
+- path: windows\bin
