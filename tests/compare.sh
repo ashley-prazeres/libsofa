@@ -3,7 +3,7 @@
 NODEJS=`which node || which nodejs || which false`
 
 # make json
-../build/src/sofa2json "$1".sofa >tmp1.json 2>tmp1.txt 
+./sofa2json "$1".sofa >tmp1.json 2>tmp1.txt 
 
 ret=$?
 if [ "$ret" != 0 ]; then 
@@ -13,7 +13,7 @@ if [ "$ret" != 0 ]; then
 fi
 
 # make sofa
-../build/src/json2sofa tmp1.json tmp2.sofa 2>tmp2.txt 
+./json2sofa tmp1.json tmp2.sofa 2>tmp2.txt 
 
 ret=$?
 if [ "$ret" != 0 ]; then 
@@ -23,7 +23,7 @@ if [ "$ret" != 0 ]; then
 fi
 
 # make json
-../build/src/sofa2json tmp2.sofa >tmp3.json 2>tmp3.txt 
+./sofa2json tmp2.sofa >tmp3.json 2>tmp3.txt 
 
 ret=$?
 if [ "$ret" != 0 ]; then 
@@ -33,7 +33,7 @@ if [ "$ret" != 0 ]; then
 fi
 
 # compare
-cp -f ../tests/json-diff.js . 2>/dev/null || true
+cp -f ../../tests/json-diff.js . 2>/dev/null || true
 $NODEJS ./json-diff.js ./tmp1.json ./tmp3.json
 ret=$?
 if [ "$ret" != 0 ]; then 
