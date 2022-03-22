@@ -85,17 +85,17 @@ public:
 
   std::string GetSOFAConventions() const;
 
-  bool IsFIRDataType() const;
-  bool IsFIREDataType() const;
-  bool IsTFDataType() const;
-  bool IsSOSDataType() const;
+    bool IsFIRDataType() const;
+    bool IsFIREDataType() const;
+    bool IsTFDataType() const;
+    bool IsSOSDataType() const;
 
-  //==============================================================================
-  // SOFA Dimensions
-  //==============================================================================
-  long GetNumMeasurements() const;
-  long GetNumReceivers() const;
-  long GetNumEmitters() const;
+    //==============================================================================
+    // SOFA Dimensions
+    //==============================================================================
+    long GetNumMeasurements() const;
+    long GetNumReceivers() const;
+    long GetNumEmitters() const;
   long GetNumDataSamples() const;
 
   void PrintSOFADimensions(std::ostream &output = std::cout,
@@ -192,14 +192,14 @@ protected:
   bool hasSOFARequiredAttributes() const;
   bool hasSOFARequiredDimensions() const;
   bool SOFADimensionsAreValid() const;
-  bool checkListenerVariables() const;
-  bool checkSourceVariables() const;
-  bool checkReceiverVariables() const;
-  bool checkEmitterVariables() const;
-  bool checkDimensions() const;
-  bool checkDataVariable() const;
-  bool checkFirDataType() const;
-  bool checkFireDataType() const;
+    bool checkListenerVariables() const;
+    bool checkSourceVariables() const;
+    bool checkReceiverVariables() const;
+    bool checkEmitterVariables() const;
+    bool checkDimensions() const;
+    bool checkDataVariable() const;
+    bool checkFirDataType() const;
+    bool checkFireDataType() const;
   bool checkTFDataType() const;
   bool checkSOSDataType() const;
 
@@ -214,6 +214,12 @@ protected:
   bool getDataIR(std::vector<double> &values) const;
   bool getDataIR(double *values, const unsigned long dim1,
                  const unsigned long dim2, const unsigned long dim3) const;
+  bool getDataReal(std::vector<double>& values) const;
+  bool getDataReal(double* values, const unsigned long dim1, 
+				   const unsigned long dim2, const unsigned long dim3) const;
+  bool getDataImag(std::vector<double>& values) const;
+  bool getDataImag(double* values, const unsigned long dim1, 
+				   const unsigned long dim2, const unsigned long dim3) const;
 
   //==============================================================================
   bool getDataDelay(double *values, const unsigned long dim1,
@@ -221,6 +227,10 @@ protected:
   bool getDataDelay(double *values, const unsigned long dim1,
                     const unsigned long dim2, const unsigned long dim3) const;
   bool getDataDelay(std::vector<double> &values) const;
+  
+    //==============================================================================
+  bool getN(double* values, const unsigned long dim1, const unsigned long dim2) const;
+  bool getN(std::vector<double>& values) const;
 
   //==============================================================================
   bool isSamplingRateScalar() const;
@@ -234,9 +244,9 @@ protected:
   void ensureDataType(const std::string &typeName) const;
 
 private:
-  //==============================================================================
-  /// avoid shallow and copy constructor
-  SOFA_AVOID_COPY_CONSTRUCTOR(File);
+    //==============================================================================
+    /// avoid shallow and copy constructor
+    SOFA_AVOID_COPY_CONSTRUCTOR(File);
 };
 
 } // namespace sofa

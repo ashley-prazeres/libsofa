@@ -112,3 +112,85 @@ bool GeneralTF::IsValid() const {
 
   return true;
 }
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Real values
+ *  @param[in]      values : array containing the values.
+ *                  The array must be allocated large enough
+ *  @param[in]      dim1 : first dimension (M)
+ *  @param[in]      dim2 : second dimension (R)
+ *  @param[in]      dim3 : third dimension (N)
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool GeneralTF::GetDataReal(double *values, const unsigned long dim1, 
+                            const unsigned long dim2, const unsigned long dim3) const {
+  /// Data.Real is [ M R N ]
+    
+  return sofa::File::getDataReal( values, dim1, dim2, dim3 );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Real values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool GeneralTF::GetDataReal(std::vector< double > &values) const {
+  /// Data.Real is [ M R N ]
+    
+  return sofa::File::getDataReal( values );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Imag values
+ *  @param[in]      values : array containing the values.
+ *                  The array must be allocated large enough
+ *  @param[in]      dim1 : first dimension (M)
+ *  @param[in]      dim2 : second dimension (R)
+ *  @param[in]      dim3 : third dimension (N)
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool GeneralTF::GetDataImag(double *values, const unsigned long dim1, 
+                            const unsigned long dim2, const unsigned long dim3) const {
+  /// Data.Imag is [ M R N ]
+    
+  return sofa::File::getDataImag( values, dim1, dim2, dim3 );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Imag values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool GeneralTF::GetDataImag(std::vector< double > &values) const {
+  /// Data.Imag is [ M R N ]
+    
+  return sofa::File::getDataImag( values );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Delay values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool GeneralTF::GetFrequencies(std::vector<double> &values) const {
+  return sofa::File::getN(values);
+}
+
+bool GeneralTF::GetFrequencies(double *values, const unsigned long dim1, const unsigned long dim2) const {
+  return sofa::File::getN(values, dim1, dim2);
+}

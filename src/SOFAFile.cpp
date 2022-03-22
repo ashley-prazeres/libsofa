@@ -810,15 +810,6 @@ bool File::checkTFDataType() const {
     SOFA_THROW("invalid 'N:Units'");
     return false;
   }
-
-  const netCDF::NcVarAtt attNLongName =
-      sofa::NcUtils::GetAttribute(varN, "LongName");
-
-  if (sofa::Units::IsValid(attNLongName) == false) {
-    SOFA_THROW("invalid 'LongName'");
-    return false;
-  }
-
   return true;
 }
 
@@ -1400,6 +1391,74 @@ bool File::getDataIR(std::vector<double> &values) const {
 
 /************************************************************************************/
 /*!
+ *  @brief          Retrieves the Data.Real values
+ *  @param[in]      values : array containing the values.
+ *                  The array must be allocated large enough
+ *  @param[in]      dim1 : first dimension (M)
+ *  @param[in]      dim2 : second dimension (R)
+ *  @param[in]      dim3 : third dimension (N)
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::getDataReal(double *values, const unsigned long dim1, 
+                       const unsigned long dim2, const unsigned long dim3) const {
+  SOFA_ASSERT( HasVariable( "Data.Real" ) == true );
+  SOFA_ASSERT( GetVariableDimensionality( "Data.Real" ) == 3 );
+
+  return NetCDFFile::GetValues( values, dim1, dim2, dim3, "Data.Real" );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Real values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::getDataReal(std::vector< double > &values) const {
+  SOFA_ASSERT( HasVariable( "Data.Real" ) == true );
+
+  return NetCDFFile::GetValues( values, "Data.Real" );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Imag values
+ *  @param[in]      values : array containing the values.
+ *                  The array must be allocated large enough
+ *  @param[in]      dim1 : first dimension (M)
+ *  @param[in]      dim2 : second dimension (R)
+ *  @param[in]      dim3 : third dimension (N)
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::getDataImag(double *values, const unsigned long dim1, 
+                       const unsigned long dim2, const unsigned long dim3) const {
+  SOFA_ASSERT( HasVariable( "Data.Imag" ) == true );
+  SOFA_ASSERT( GetVariableDimensionality( "Data.Imag" ) == 3 );
+    
+  return NetCDFFile::GetValues( values, dim1, dim2, dim3, "Data.Imag" );
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Imag values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::getDataImag(std::vector< double > &values) const {
+  SOFA_ASSERT( HasVariable( "Data.Imag" ) == true );
+    
+  return NetCDFFile::GetValues( values, "Data.Imag" );
+}
+
+/************************************************************************************/
+/*!
  *  @brief          Retrieves the Data.Delay values
  *  @param[in]      values : the array is resized if needed
  *  @return         true on success
@@ -1427,6 +1486,27 @@ bool File::getDataDelay(double *values, const unsigned long dim1,
   SOFA_ASSERT(GetVariableDimensionality("Data.Delay") == 3);
 
   return NetCDFFile::GetValues(values, dim1, dim2, dim3, "Data.Delay");
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the N values
+ *  @param[in]      values : the array is resized if needed
+ *  @return         true on success
+ *
+ */
+/************************************************************************************/
+bool File::getN(std::vector< double > &values) const {
+    SOFA_ASSERT( HasVariable( "N" ) == true );
+    
+    return NetCDFFile::GetValues( values, "N" );
+}
+
+bool File::getN(double *values, const unsigned long dim1, const unsigned long dim2) const{
+    SOFA_ASSERT( HasVariable( "N" ) == true );
+    SOFA_ASSERT( GetVariableDimensionality( "N" ) == 2 );
+    
+    return NetCDFFile::GetValues( values, dim1, dim2, "N" );
 }
 
 /************************************************************************************/

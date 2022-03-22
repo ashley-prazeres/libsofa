@@ -6,7 +6,7 @@ include(GenerateExportHeader)
 include(GNUInstallDirs)
 
 option(BUILD_TESTS "Build test programs" ON)
-option(BUILD_SHARED_LIBS "Build shared library" ON)
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
 
 set(CPACK_PACKAGE_DESCRIPTION "SOFA library to read and write HRTFs")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY

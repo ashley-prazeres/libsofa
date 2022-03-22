@@ -74,15 +74,27 @@ public:
 
   virtual ~GeneralTF(){};
 
-  virtual bool IsValid() const SOFA_OVERRIDE;
+    virtual bool IsValid() const SOFA_OVERRIDE;
+
+    //==============================================================================
+    bool GetDataReal(std::vector<double>& values) const;
+    bool GetDataReal(double* values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3)
+        const;
+    bool GetDataImag(std::vector<double>& values) const;
+    bool GetDataImag(double* values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3)
+        const;
+
+    //==============================================================================
+    bool GetFrequencies(double* values, const unsigned long dim1, const unsigned long dim2) const;
+    bool GetFrequencies(std::vector<double>& values) const;
 
 private:
-  //==============================================================================
-  bool checkGlobalAttributes() const;
+    //==============================================================================
+    bool checkGlobalAttributes() const;
 
 private:
-  /// avoid shallow and copy constructor
-  SOFA_AVOID_COPY_CONSTRUCTOR(GeneralTF);
+    /// avoid shallow and copy constructor
+    SOFA_AVOID_COPY_CONSTRUCTOR(GeneralTF);
 };
 
 } // namespace sofa
